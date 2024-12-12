@@ -1,0 +1,13 @@
+runtime: python310
+service: default
+
+entrypoint: gunicorn -b :$PORT main:app
+
+handlers:
+- url: /.*
+  script: auto
+  secure: always
+
+automatic_scaling:
+  target_cpu_utilization: 0.75
+  min_instances: 1
